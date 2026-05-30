@@ -17,11 +17,22 @@ Grover's algorithm works in a Hilbert space of dimension $N = 2^n$, where $n$ is
 3.  **Diffusion Operator ($U_s$)**: Amplify the probability amplitude of the marked item.
 4.  **Measurement**: Repeat steps 2 and 3 approximately $\frac{\pi}{4}\sqrt{N}$ times and measure the state.
 
-### The Oracle ($U_\omega$)
+### The Oracle (State Marking)
 
-The Oracle is a "black box" operation that recognizes the solution. Mathematically, for a target index $\omega$, it is defined as:
-$$U_\omega |x\rangle = \begin{cases} -|x\rangle & \text{if } x = \omega \\ |x\rangle & \text{if } x \neq \omega \end{cases}$$
-In this simulation, it is represented as an identity matrix where the diagonal element at the `target_index` is $-1$.
+The Oracle acts as a conditional check or query function. It identifies the target element and "marks" it by flipping the sign (phase) of its probability amplitude from positive to negative, while leaving all other states completely untouched.
+
+In this simulation, this behavior is implemented in two ways:
+1. **Matrix Representation**: As an identity matrix where the diagonal element at `target_index` is set to `-1` instead of `1`:
+   ```python
+   oracle = np.eye(N, dtype=float)
+   oracle[target_index, target_index] = -1
+   ```
+2. **Direct Vector Manipulation** (applied inside the query loop for performance):
+   ```python
+   state[target_index] *= -1
+   ```
+
+By flipping the target's phase, the Oracle tags the target without revealing its position, setting up the diffusion operator to amplify it.
 
 ### The Diffusion Operator ($U_s$)
 
