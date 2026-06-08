@@ -1,3 +1,3 @@
-C:\Users\dommi\PycharmProjects\Grover's Algorithm\.venv
-.idea
-C:\Users\dommi\PycharmProjects\Grover's Algorithm\test.py
+.venv/
+.idea/
+test.py
