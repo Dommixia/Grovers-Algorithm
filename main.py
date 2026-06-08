@@ -23,7 +23,7 @@ for i in range(len(dataset)):
 end = time.perf_counter()
 classical_time = end - start
 
-print(f"Classical search time: {classical_time}")
+print(f"Classical search time: {classical_time}s")
 print(f"Classical Computer found index: {found_index}")
 
 print("------------------------------------------------------------")
@@ -64,7 +64,7 @@ qindex = np.argmax(probs) #Index found by quantum search
 end = time.perf_counter()
 quantum_time = end - startQ
 
-print(f"Quantum search time: {quantum_time}")
+print(f"Quantum search time: {quantum_time}s")
 print(f"Quantum Computer found index: {qindex}")
 print("------------------------------------------------------------")
 
